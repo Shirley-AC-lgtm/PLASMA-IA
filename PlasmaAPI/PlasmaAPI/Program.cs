@@ -1,15 +1,11 @@
 using PlasmaIA;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    EnvironmentName = Environments.Production
+});
 
-builder.Configuration.AddJsonFile(
-    "secrets.json",
-    optional: false,
-    reloadOnChange: true);
-
-
-builder.Services.AddControllers();
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<PlasmaBrain>();
@@ -39,8 +35,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
