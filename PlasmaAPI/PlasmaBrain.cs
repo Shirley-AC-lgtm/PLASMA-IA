@@ -109,6 +109,11 @@ Reglas:
                     "Authorization",
                     $"Bearer {apiKey}");
 
+                var inicioGroq = DateTime.Now;
+
+                Console.WriteLine(
+                    $" ENVIANDO A GROQ: {inicioGroq:HH:mm:ss}");
+
                 var response =
                     await client.PostAsync(
                         "https://api.groq.com/openai/v1/chat/completions",
@@ -118,6 +123,14 @@ Reglas:
                             Encoding.UTF8,
                             "application/json")
                     );
+
+                var finGroq = DateTime.Now;
+
+                Console.WriteLine(
+                    $" RESPUESTA DE GROQ: {finGroq:HH:mm:ss}");
+
+                Console.WriteLine(
+                    $" TIEMPO GROQ: {(finGroq - inicioGroq).TotalSeconds:F2} segundos");
 
                 var json =
                     await response.Content
