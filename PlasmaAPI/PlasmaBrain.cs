@@ -92,6 +92,9 @@ Reglas:
                     }
                 };
 
+                Console.WriteLine("MODELO PLASMA: llama-3.1-8b-instant");
+                Console.WriteLine("MAX TOKENS PLASMA: 1800");
+
                 var body = new
                 {
                     model = "llama-3.1-8b-instant",
@@ -100,7 +103,7 @@ Reglas:
 
                     temperature = 0.3,
 
-                    max_tokens = 3000
+                    max_tokens = 1800
                 };
 
                 client.DefaultRequestHeaders.Clear();
