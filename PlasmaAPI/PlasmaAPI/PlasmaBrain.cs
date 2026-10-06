@@ -350,7 +350,7 @@ el estudiante para comprender y estudiar el tema."
 
                     temperature = 0.3,
 
-                    max_tokens = 4000
+                    max_tokens = 3000
                 };
 
                 client.DefaultRequestHeaders.Clear();
@@ -379,13 +379,19 @@ el estudiante para comprender y estudiar el tema."
                 dynamic data =
     JsonConvert.DeserializeObject(json);
 
-                if (data.choices == null)
+                if (!response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("ERROR DE GROQ:");
                     Console.WriteLine(json);
 
                     throw new Exception(
-                        "Groq no devolvió choices");
+                        $"Groq devolvió {(int)response.StatusCode}: {json}");
+                }
+
+                if (data.choices == null)
+                {
+                    throw new Exception(
+                        "Groq respondió correctamente pero no devolvió choices.");
                 }
 
                 string contenido =
