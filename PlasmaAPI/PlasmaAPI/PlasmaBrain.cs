@@ -345,12 +345,10 @@ el estudiante para comprender y estudiar el tema."
                 var body = new
                 {
                     model = "openai/gpt-oss-20b",
-
                     messages = mensajes,
-
                     temperature = 0.3,
-
-                    max_tokens = 3000
+                    max_tokens = 3000,
+                    reasoning_effort = "low"
                 };
 
                 client.DefaultRequestHeaders.Clear();
